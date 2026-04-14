@@ -11,10 +11,15 @@ When this skill is triggered:
 
 1. Read the TEAMS_WEBHOOK_URL from the .env file using:
    `grep TEAMS_WEBHOOK_URL .env | cut -d= -f2`
-2. Format the message as a Teams Adaptive Card JSON payload
-3. Post using curl:
-   curl -H "Content-Type: application/json" \
-    -d '{"text": "YOUR_MESSAGE"}' \
-    $TEAMS_WEBHOOK_URL
-4. Confirm success by checking the HTTP response code
-5. NEVER print the webhook URL in any output
+2. The standup message may contain literal `\n` escape sequences or actual newlines.
+   Normalize them into actual newlines first:
+   `MESSAGE=$(printf '%b' "$STANDUP_TEXT")`
+3. Build the JSON payload safely using jq so newlines are properly encoded:
+   `JSON=$(jq -n --arg text "$MESSAGE" '{"text": $text}')`
+4. Post using curl:
+   curl -s -o /tmp/teams_response.txt -w "%{http_code}" \
+    -H "Content-Type: application/json" \
+    -d "$JSON" \
+    "$TEAMS_WEBHOOK_URL"
+5. Confirm success by checking the HTTP response code (expect 200 or 202)
+6. NEVER print the webhook URL in any output
