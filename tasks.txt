@@ -1,12 +1,11 @@
 Pending Tasks: 
     - Update Front End Layout
     - Add new checkout option
-    - Add new payment method
-    - Backend Validations
-
+   
 Done Tasks: 
     - Payment validations
     - Backend Validations
+    - Add new payment method
 
 Blocked Tasks: 
     - Permission to test payments methods
