@@ -1,4 +1,4 @@
 {
-  "last_standup": "**Yesterday:**\n- Updated the task list format\n- Fixed a crash when the task file is missing\n\n**Today:**\n- No tasks found in `tasks.txt` — file only contains a version marker\n\n**Blockers:** No blockers",
-  "last_run_date": "2026-04-12"
+  "last_standup": "**Yesterday:**\n- Added a new payment method\n- Implemented backend validations\n- Built the writer agent for standups\n\n**Today:**\n- Update the front-end layout\n- Add a new checkout option\n\n**Blockers:** Waiting on permission to test payment methods",
+  "last_run_date": "2026-04-15"
 }
